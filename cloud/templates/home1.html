@@ -1,0 +1,59 @@
+<html>
+<head>
+    <style>
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .textbox {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease-in-out;
+            visibility: hidden;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- The dots -->
+<div class="dot" style="left: 50px; top: 50px;"></div>
+<div class="dot" style="left: 100px; top: 100px;"></div>
+<div class="dot" style="left: 150px; top: 150px;"></div>
+
+<!-- The textboxes -->
+<div class="textbox" id="textbox1" style="left: 60px; top: 60px;">Text 1</div>
+<div class="textbox" id="textbox2" style="left: 110px; top: 110px;">Text 2</div>
+<div class="textbox" id="textbox3" style="left: 160px; top: 160px;">Text 3</div>
+
+<script>
+    
+    // Add click event listeners to the dots
+    let dots = document.querySelectorAll('.dot');
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].addEventListener('click', function() {
+            let textbox = document.querySelector('#textbox' + (i + 1));
+            textbox.style.left = parseInt(dots[i].style.left) + Math.floor(Math.random() * 20 - 10) + 'px';
+            textbox.style.top = parseInt(dots[i].style.top) + Math.floor(Math.random() * 20 - 10) + 'px';
+            textbox.style.visibility = 'visible';
+            textbox.style.opacity = 1;
+
+            setTimeout(function() {
+                textbox.style.visibility = 'hidden';
+                textbox.style.opacity = 0;
+            }, 10000);
+        });
+    }
+</script>
+
+</body>
+</html>
